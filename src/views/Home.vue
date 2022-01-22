@@ -117,14 +117,14 @@ body {
 }
 
 #app_container {
-  background-image: url("../assets/cold-bg.webp");
+  background-image: url("../assets/cold-bg.jpg");
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
 }
 
 #app_container.warm {
-  background-image: url("../assets/warm-bg.webp");
+  background-image: url("../assets/warm-bg.jpg");
 }
 
 main {
