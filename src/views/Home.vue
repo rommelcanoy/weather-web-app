@@ -1,30 +1,36 @@
 <template>
   <div
     id="app_container"
-    :class="typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''"
+    :class="
+      typeof weather.main != 'undefined' && weather.main.temp > 16
+        ? 'warm'
+        : 'cold'
+    "
   >
     <main>
-      <div class="search-box">
-        <input
-          type="text"
-          name=""
-          id=""
-          class="search-bar"
-          placeholder="Search country"
-          v-model="query"
-          @keypress="fetchWeather"
-        />
-      </div>
-      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
-        <div class="location-box">
-          <div class="location">
-            {{ weather.name }}, {{ weather.sys.country }}
-          </div>
-          <div class="date">{{ dateBuilder() }}</div>
+      <div class="positioning">
+        <div class="search-box">
+          <input
+            type="text"
+            name=""
+            id=""
+            class="search-bar"
+            placeholder="Search country"
+            v-model="query"
+            @keypress="fetchWeather"
+          />
         </div>
-        <div class="weather-box">
-          <div class="temp">{{ Math.round(weather.main.temp) }}°C</div>
-          <div class="weather">{{ weather.weather[0].main }}</div>
+        <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
+          <div class="location-box">
+            <div class="location">
+              {{ weather.name }}, {{ weather.sys.country }}
+            </div>
+            <div class="date">{{ dateBuilder() }}</div>
+          </div>
+          <div class="weather-box">
+            <div class="temp">{{ Math.round(weather.main.temp) }}°C</div>
+            <div class="weather">{{ weather.weather[0].main }}</div>
+          </div>
         </div>
       </div>
     </main>
@@ -111,17 +117,20 @@ body {
 }
 
 #app_container {
-  background-image: url("../assets/cold-bg.jpg");
+  background-image: url("../assets/cold-bg.webp");
   background-size: cover;
   background-position: bottom;
   transition: 0.4s;
 }
 
 #app_container.warm {
-  background-image: url("../assets/warm-bg.jpg");
+  background-image: url("../assets/warm-bg.webp");
 }
 
 main {
+  display: flex;
+  justify-content:center;
+  align-items: center;
   min-height: 100vh;
   padding: 25px;
   background-image: linear-gradient(
@@ -129,6 +138,12 @@ main {
     rgba(0, 0, 0, 0.25),
     rgba(0, 0, 0, 0.75)
   );
+}
+
+.positioning {
+  max-width: 1000px;
+  min-width: 500px;
+  /*border: 1px solid red;*/
 }
 
 .search-box {
